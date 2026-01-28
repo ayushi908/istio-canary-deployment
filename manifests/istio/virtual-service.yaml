@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: myapp
+spec:
+  hosts:
+  - myapp
+  gateways:
+  - mesh
+  http:
+  - route:
+    - destination:
+        host: myapp
+        subset: v1
+      weight: 70
+    - destination:
+        host: myapp
+        subset: v2
+      weight: 30
